@@ -16,18 +16,18 @@ def handle_pan_tilt_control(req):
     if req.operation_type == 'panoramic':
         panomaric = set_pantilt(serial_port)
         panoramic.set_angle(req.operation_specification, req.required_value)
-        return PantilControlResponse(True)
+        return PantiltControlResponse(True)
     elif req.operation_type == 'teleoperation':
         teleop = teleop_pantilt(serial_port)
         teleop.teleoperation(req.operation_specification, req.required_value)
-        return PantilControlResponse(True)
+        return PantiltControlResponse(True)
     else:
-        return PantilControlResponse(False)
+        return PantiltControlResponse(False)
 
 def pan_tilt_control_server():
     rospy.init_node('pan_tilt_control_server')
     service = rospy.Service('pan_tilt_control',
-                            PantilControl, handle_pan_tilt_control)
+                            PantiltControl, handle_pan_tilt_control)
     print("Ready to control pantilt")
     rospy.spin()
 
