@@ -37,7 +37,7 @@ def pan_tilt_control_server():
     rospy.init_node('pantilt_control_server')
     service = rospy.Service('pantilt_control',
                             PantiltControl, handle_pan_tilt_control)
-    print("Ready to control pantilt")
+    print("Ready to control pantilt\n\n")
     rospy.spin()
 
 

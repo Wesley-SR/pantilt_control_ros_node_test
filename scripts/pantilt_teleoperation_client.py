@@ -7,8 +7,8 @@ import os
 from os import path
 import sys
 import rospy
-from pantilt_control_ros_node_test.srv import PantiltControl, PantiltControlResponse
-# from pantilt_control_code_test.srv import *
+from pantilt_control_ros_node_test.srv import PantiltControl
+from pantilt_control_ros_node_test.srv import PantiltControlResponse
 
 
 def pt_teleoperation_client(command, speed):

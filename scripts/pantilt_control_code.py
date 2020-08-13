@@ -137,9 +137,10 @@ class StandardCommands(PanTilt):
             # Send to pantilt
 
             if self._valid_command is True:
-                print('Command is ok!')
+                print("Command is ok!\n")
                 # self._ser.write(self._data_write)
                 print("Send to pantilt >> ", self._data_write)
+                print("\n\n")
 
         except ZeroDivisionError as error:
             print('ZeroDivisionError')
@@ -205,7 +206,6 @@ class AdvancedCommands(PanTilt):
             self._getter = self.get_pan_angle
             self._setter = self.set_pan_angle
 
-
         elif command == 'tilt':
             if (new_angle > 90) and (new_angle < 311):
                 raise Exception('Desired tilt angle in dead zone')
@@ -217,20 +217,21 @@ class AdvancedCommands(PanTilt):
             self._getter = self.get_tilt_angle
             self._setter = self.set_tilt_angle
 
-
-        print('Command and angle input are OK!\n\n')
+        print('Command and angle input are OK!\n')
 
     def set_pan_angle(self, angle):
         angle = float(angle)
         self.frame_byte_calculator(angle, self._byte_set_pan)
         # self._ser.write(self._data_write)
         print('Send to pan >> ', self._data_write)
+        print("\n\n")
 
     def set_tilt_angle(self, angle):
         angle = float(angle)
         self.frame_byte_calculator(angle, self._byte_set_tilt)
         # self._ser.write(self._data_write)
         print('Send to tilt >> ', self._data_write)
+        print("\n\n")
 
     # Frame byte calculator from angle and direction --> (byte3)
     def frame_byte_calculator(self, angle, byte3):
@@ -245,7 +246,7 @@ class AdvancedCommands(PanTilt):
             self._data_write[5] = 254
 
         # print(self._data_write[5])
-        print('Command sent:  ', self._data_write)
+        # print('Command sent:  ', self._data_write)
         self._data_write[6] = 10  # Can be any number
         """The correct thing is to put the checksum,
         but don't work in this hardware.
