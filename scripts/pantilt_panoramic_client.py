@@ -8,7 +8,7 @@ from os import path
 
 import sys
 import rospy
-from pan_tilt_control.srv import *
+from pantilt_control_code_test.srv import *
 
 
 def take_picture(type_image, name_file):
@@ -35,10 +35,11 @@ pan_steps = [22.5, 22.5, 24, 30, 40, 360]
 returning = False
 name_photos_count = 0
 
+
 def pt_panoramic_client(self):
     rospy.wait_for_service('pan_tilt_control')
     try:
-        pt_panoramic = rospy.ServiceProxy('pan_tilt_control', PantilControl)
+        pt_panoramic = rospy.ServiceProxy('pan_tilt_control', PantiltControl)
 
         for idx, tilt_angle in enumerate(tilt):
             if tilt_angle >= pan_tilt_limit:
@@ -47,9 +48,7 @@ def pt_panoramic_client(self):
             current_step = pan_steps[idx]
             steps_count = math.ceil(360 / current_step)
             pan_photos_count = 0
-            while pan_photos_count < steps_count:
-                if returning:
-                    current_angle = 360 - pan_photos_count * current_step
+            while pan_photos_count < steppan_tilt_control pan_photos_count * current_step
                 else:
                     current_angle = pan_photos_count * current_step
                 if current_angle >= pan_tilt_limit:

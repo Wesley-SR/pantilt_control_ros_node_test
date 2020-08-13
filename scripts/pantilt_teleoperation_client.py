@@ -7,26 +7,32 @@ import os
 from os import path
 import sys
 import rospy
-from pan_tilt_control.srv import *
+from pantilt_control_ros_node_test.srv import PantiltControl, PantiltControlResponse
+# from pantilt_control_code_test.srv import *
 
-def pt_teleoperation_client(command, speed)
-    rospy.wait_for_service('pan_tilt_control')
+
+def pt_teleoperation_client(command, speed):
+    rospy.wait_for_service('pantilt_control')
     try:
-        pt_teleoperation = rospy.ServiceProxy('pan_tilt_control', PantilControl)
-        resp = pt_teleoperation('teleoperation', command, speed)  # -------- Chama o serviço
+        pt_teleoperation = rospy.ServiceProxy('pantilt_control', PantiltControl)
+        operation = "teleoperation"
+        resp = pt_teleoperation(operation, command, speed)
         return resp.response_sucess
     except rospy.ServiceException as e:
-        print("Service call failed: %e"%e)
+        print("Service call failed: %e" % e)
+
 
 def usage():
-    return "%s [command speed]"%sys.argv[0]
+    return "%s [command speed]" % sys.argv[0]
 
-if __name__ == "__main__":pt_panoramic
+
+if __name__ == "__main__":
     if len(sys.argv) == 3:
         command = str(sys.argv[1])
         speed = int(sys.argv[2])
+
     else:
         print(usage())
         sys.exit(1)
-
-    pt_teleoperation_client(command, speed)
+    print("Requesting teleoperation --> %s --> %s"%(command, speed))
+    pt_teleoperation_client(command, speed) 

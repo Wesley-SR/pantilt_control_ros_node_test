@@ -51,7 +51,7 @@ class PanTilt():
         return angle
 
     def __del__(self):
-        self._ser.close()
+        # self._ser.close()
         print('Destructor...')
 
 
@@ -138,7 +138,8 @@ class StandardCommands(PanTilt):
 
             if self._valid_command is True:
                 print('Command is ok!')
-                self._ser.write(self._data_write)
+                # self._ser.write(self._data_write)
+                print("Send to pantilt >> ", self._data_write)
 
         except ZeroDivisionError as error:
             print('ZeroDivisionError')
