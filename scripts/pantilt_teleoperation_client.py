@@ -28,8 +28,8 @@ def usage():
 
 if __name__ == "__main__":
     if len(sys.argv) == 3:
-        command = str(sys.argv[1])
-        speed = int(sys.argv[2])
+        command = str(sys.argv[1])  # ex: down
+        speed = int(sys.argv[2])  # ex: 50
 
     else:
         print(usage())
