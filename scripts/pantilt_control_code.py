@@ -199,7 +199,8 @@ class AdvancedCommands(PanTilt):
         if command == 'pan':
             # print('command == pan')
 
-            if not (new_angle > 0 and new_angle < 360):
+            if not (new_angle >= 0 and new_angle <= 360):
+                print("new_angle = " , new_angle)
                 raise ValueError('Desired pan angle out of range'
                                  'Enter with 0< angle <360')
 
