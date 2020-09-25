@@ -2,22 +2,22 @@
 
 from __future__ import print_function
 
-import math
-import os
-from os import path
 import sys
 import rospy
 from pantilt_control_ros_node_test.srv import PantiltControl
-from pantilt_control_ros_node_test.srv import PantiltControlResponse
 
 
 def pt_teleoperation_client(command, speed):
     rospy.wait_for_service('pantilt_control')
     try:
-        pt_teleoperation = rospy.ServiceProxy('pantilt_control', PantiltControl)
-        operation = "teleoperation"
-        resp = pt_teleoperation(operation, command, speed)
+
+        # Instances can be called and you can invoke them
+        pt_teleoperation = rospy.ServiceProxy('pantilt_control',
+                                              PantiltControl)
+        resp = pt_teleoperation("teleoperation", command, speed)
+
         return resp.response_sucess
+
     except rospy.ServiceException as e:
         print("Service call failed: %e" % e)
 
@@ -34,5 +34,6 @@ if __name__ == "__main__":
     else:
         print(usage())
         sys.exit(1)
-    print("Requesting teleoperation --> %s --> %s"%(command, speed))
-    pt_teleoperation_client(command, speed) 
+
+    print("Requesting teleoperation --> %s --> %s" % (command, speed))
+    pt_teleoperation_client(command, speed)
