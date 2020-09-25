@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 
 from __future__ import print_function
-
-import math
-import os
-from os import path
 import sys
 import rospy
 from pantilt_control_ros_node_test.srv import PantiltControl
@@ -16,8 +12,7 @@ def pt_panoramic_client(command, new_angle):
 
     try:
         pt_panoramic = rospy.ServiceProxy('pantilt_control', PantiltControl)
-        operation = "panoramic"
-        resp = pt_panoramic(operation, command, new_angle)
+        resp = pt_panoramic("panoramic", command, new_angle)
 
         return resp.response_sucess
 
@@ -38,5 +33,5 @@ if __name__ == "__main__":
         print(usage())
         sys.exit(1)
 
-    print("Requesting panoramic --> %s --> %s"%(command, new_angle))
+    print("Requesting panoramic --> %s --> %s " % (command, new_angle))
     pt_panoramic_client(command, new_angle)
