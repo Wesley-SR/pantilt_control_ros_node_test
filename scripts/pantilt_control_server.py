@@ -18,7 +18,7 @@ def handle_pan_tilt_control(req):
     print("operation_specification | required_value = %s | %s" % (
           req.operation_specification, req.required_value))
 
-    if req.operation_type == "panoramic":
+    if req.operation_type == "set_angle":
         panomaric = set_pantilt(serial_port)
         panomaric.set_angle(req.operation_specification, req.required_value)
         return PantiltControlResponse(True)
