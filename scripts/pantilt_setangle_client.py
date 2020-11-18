@@ -12,7 +12,7 @@ def pt_panoramic_client(command, new_angle):
 
     try:
         pt_panoramic = rospy.ServiceProxy('pantilt_control', PantiltControl)
-        resp = pt_panoramic("panoramic", command, new_angle)
+        resp = pt_panoramic("set_angle", command, new_angle)
 
         return resp.response_sucess
 
