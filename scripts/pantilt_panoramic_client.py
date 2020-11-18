@@ -46,7 +46,7 @@ def pt_panoramic_client():
             if tilt_angle >= pan_tilt_limit:
                 tilt_angle = pan_tilt_limit - 1
 
-            resp = pt_panoramic('panoramic', 'tilt', tilt_angle)
+            resp = pt_panoramic('set_angle', 'tilt', tilt_angle)
 
             current_step = pan_steps[idx]
             # math.ceil(x): returns the smallest integer not less than x
@@ -63,7 +63,7 @@ def pt_panoramic_client():
                 if current_angle >= pan_tilt_limit:
                     current_angle = pan_tilt_limit - 1
 
-                resp = pt_panoramic('panoramic', 'pan', current_angle)
+                resp = pt_panoramic('set_angle', 'pan', current_angle)
 
                 take_picture(0, name_photos_count)
                 print("take_picture", 0, name_photos_count)
